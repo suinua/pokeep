@@ -21,8 +21,10 @@ dependencies:
   rxdart: ^0.21.0
 
   #firebase
-  firebase_database: ^2.0.3
-  
+  firebase_database: ^0.4.4
+  firebase_auth: ^0.7.0
+
+
   flutter:
     sdk: flutter
 
