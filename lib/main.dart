@@ -1,6 +1,6 @@
 import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:pokeep/blocs/me_bloc/main.dart';
+import 'package:pokeep/blocs/me_bloc/bloc.dart';
 import 'package:pokeep/blocs/me_bloc/provider.dart';
 import 'package:pokeep/view/pages/home/main.dart';
 import 'package:pokeep/view/pages/sign_in/main.dart';

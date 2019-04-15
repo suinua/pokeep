@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokeep/blocs/me_bloc/main.dart';
+import 'package:pokeep/blocs/me_bloc/bloc.dart';
 import 'package:pokeep/blocs/me_bloc/provider.dart';
 
 class SignInPage extends StatelessWidget {

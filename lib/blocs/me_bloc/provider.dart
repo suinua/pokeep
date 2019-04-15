@@ -1,8 +1,8 @@
 import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
+import 'package:pokeep/blocs/me_bloc/bloc.dart';
 
-import 'main.dart';
 
 class MeBlocProvider extends BlocProvider<MeBloc> {
   MeBlocProvider({
