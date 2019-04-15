@@ -1,5 +1,5 @@
 import 'package:meta/meta.dart';
-import 'package:pokeep/models/user.dart';
+import 'package:pokeep/models/account/user.dart';
 
 class Me implements User {
   @override

@@ -1,4 +1,4 @@
-import 'package:pokeep/models/user.dart';
+import 'package:pokeep/models/account/user.dart';
 
 class Friend implements User {
   @override

@@ -1,7 +1,7 @@
 import 'package:bloc_provider/bloc_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:pokeep/models/me.dart';
+import 'package:pokeep/models/account/me.dart';
 import 'package:rxdart/rxdart.dart';
 
 class MeBloc implements Bloc {

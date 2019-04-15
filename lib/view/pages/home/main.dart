@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokeep/blocs/me_bloc/main.dart';
 import 'package:pokeep/blocs/me_bloc/provider.dart';
-import 'package:pokeep/models/me.dart';
+import 'package:pokeep/models/account/me.dart';
 
 class Home extends StatelessWidget {
   @override

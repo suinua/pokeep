@@ -5,7 +5,7 @@ import 'package:pokeep/blocs/me_bloc/provider.dart';
 import 'package:pokeep/view/pages/home/main.dart';
 import 'package:pokeep/view/pages/sign_in/main.dart';
 
-import 'models/me.dart';
+import 'package:pokeep/models/account/me.dart';
 
 void main() => runApp(BlocProviderTree(
       blocProviders: [
