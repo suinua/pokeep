@@ -37,6 +37,7 @@ class MeBloc implements Bloc {
       id: user.uid,
       name: user.displayName,
       mail: user.email,
+      iconUrl: user.photoUrl
     );
     _setValue.add(_me);
   }

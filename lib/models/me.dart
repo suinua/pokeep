@@ -1,3 +1,4 @@
+import 'package:meta/meta.dart';
 import 'package:pokeep/models/user.dart';
 
 class Me implements User {
@@ -10,8 +11,13 @@ class Me implements User {
   String iconUrl;
 
   Me({
+    @required
     this.id,
+    @required
     this.name,
+    @required
     this.mail,
+    @required
+    this.iconUrl,
   });
 }
