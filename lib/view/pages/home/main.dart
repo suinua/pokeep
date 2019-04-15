@@ -21,7 +21,9 @@ class Home extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.all(3.0),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      //TODO : アカウント設定画面に移行
+                    },
                     child: Container(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(60.0),
