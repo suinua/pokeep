@@ -9,5 +9,15 @@ class User implements Person {
   @override
   String iconUrl;
 
+  @override
+  Map<String, dynamic> toJson() {
+    // TODO: implement toJson
+    return null;
+  }
 
+  @override
+  bool operator ==(o) => o is User && o.id == this.id;
+
+  @override
+  int get hashCode => super.hashCode;
 }

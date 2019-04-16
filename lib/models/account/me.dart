@@ -10,14 +10,22 @@ class Me implements Person {
   @override
   String iconUrl;
 
+  @override
+  Map<String, dynamic> toJson() {
+    // TODO: implement toJson
+    return null;
+  }
+
+  @override
+  bool operator ==(o) => o is Me && o.id == this.id;
+
+  @override
+  int get hashCode => super.hashCode;
+
   Me({
-    @required
-    this.id,
-    @required
-    this.name,
-    @required
-    this.mail,
-    @required
-    this.iconUrl,
+    @required this.id,
+    @required this.name,
+    @required this.mail,
+    @required this.iconUrl,
   });
 }
