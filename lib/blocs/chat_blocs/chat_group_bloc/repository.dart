@@ -17,6 +17,8 @@ class ChatGroupRepository {
     @required this.groupKey,
     @required this.onNameChanged,
   }) {
+    assert(groupKey != null);
+
     _chatGroupNameRef = FirebaseDatabase.instance
         .reference()
         .child('chat_groups')
