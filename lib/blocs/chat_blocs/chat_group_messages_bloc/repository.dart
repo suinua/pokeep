@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:meta/meta.dart';
 import 'package:pokeep/models/chat/message.dart';
@@ -12,6 +14,9 @@ class ChatGroupMessagesRepository {
   final OnMessageAdded onMessageAdded;
   final OnMessageDeleted onMessageDeleted;
 
+  StreamSubscription<Event> _onMessageAddedListener;
+  StreamSubscription<Event> _onMessageDeletedListener;
+
   ChatGroupMessagesRepository({
     @required this.groupKey,
     @required this.onMessageAdded,
@@ -25,25 +30,31 @@ class ChatGroupMessagesRepository {
         .child(groupKey)
         .child('messages');
 
-    _messagesRef.onChildAdded.listen((event){
+    _onMessageAddedListener = _messagesRef.onChildAdded.listen((event) {
       Map<String, dynamic> value =
-      Map<String, dynamic>.from(event.snapshot.value);
+          Map<String, dynamic>.from(event.snapshot.value);
 
       this.onMessageAdded(Message.fromJson(event.snapshot.key, value));
     });
 
-    _messagesRef.onChildRemoved.listen((event){
+    _onMessageDeletedListener = _messagesRef.onChildRemoved.listen((event) {
       Map<String, dynamic> value =
-      Map<String, dynamic>.from(event.snapshot.value);
+          Map<String, dynamic>.from(event.snapshot.value);
 
       this.onMessageDeleted(Message.fromJson(event.snapshot.key, value));
     });
   }
 
-  void addMessage(Message message){
+  void addMessage(Message message) {
     _messagesRef.child(message.key).remove();
   }
-  void deleteMessage(Message message){
+
+  void deleteMessage(Message message) {
     _messagesRef.push().set(message.toJson());
+  }
+
+  void dispose(){
+    _onMessageAddedListener.cancel();
+    _onMessageDeletedListener.cancel();
   }
 }
