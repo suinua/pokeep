@@ -1,7 +1,7 @@
 import 'package:meta/meta.dart';
-import 'package:pokeep/models/account/user.dart';
+import 'package:pokeep/models/account/person.dart';
 
-class Me implements User {
+class Me implements Person {
   @override
   final String id;
   @override

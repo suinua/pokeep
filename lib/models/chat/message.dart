@@ -1,13 +1,13 @@
 import 'package:meta/meta.dart';
-import 'package:pokeep/models/account/user.dart';
+import 'package:pokeep/models/account/person.dart';
 
 class Message {
   String key;
-  User _owner;
+  Person _owner;
   DateTime _sendDate;
   String _image;
 
-  User get owner => _owner;
+  Person get owner => _owner;
 
   DateTime get sendDate => _sendDate;
 
@@ -17,7 +17,7 @@ class Message {
 
   Message({
     @required
-    User owner,
+    Person owner,
     @required
     DateTime sendDate,
   })  : _owner = owner,
@@ -26,7 +26,7 @@ class Message {
 
   Message.withImage({
     @required
-    User owner,
+    Person owner,
     @required
     DateTime sendDate,
     @required
