@@ -9,14 +9,11 @@ import 'package:pokeep/models/account/me.dart';
 
 import 'blocs/joining_chat_groups_blocs/chat_group_bloc/bloc.dart';
 import 'blocs/joining_chat_groups_blocs/chat_group_bloc/provider.dart';
-import 'package:pokeep/blocs/joining_chat_groups_blocs/bloc.dart';
-import 'package:pokeep/blocs/joining_chat_groups_blocs/provider.dart';
 
 void main() => runApp(BlocProviderTree(
       blocProviders: [
         MeBlocProvider(value: MeBloc()),
         //chat group
-        ChatGroupsBlocProvider(value: ChatGroupsBloc()),
         ChatGroupBlocProvider(value: ChatGroupBloc()),
       ],
       child: Pokeep(),
