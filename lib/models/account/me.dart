@@ -12,11 +12,11 @@ class Me implements Person {
 
   @override
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'name': name,
-    'mail': mail,
-    'icon_url': iconUrl,
-  };
+        'id': id,
+        'name': name,
+        'mail': mail,
+        'icon_url': iconUrl,
+      };
 
   @override
   bool operator ==(o) => o is Me && o.id == this.id;
@@ -30,4 +30,10 @@ class Me implements Person {
     @required this.mail,
     @required this.iconUrl,
   });
+
+  Me.fromJson(this.id,Map<String,dynamic> value){
+    this.name = value['name'];
+    this.mail = value['mail'];
+    this.iconUrl = value['iconUrl'];
+  }
 }
