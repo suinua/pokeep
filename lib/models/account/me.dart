@@ -3,12 +3,14 @@ import 'package:pokeep/models/account/person.dart';
 
 class Me implements Person {
   @override
-  final String id;
+  String id;
   @override
   String name;
   String mail;
   @override
   String iconUrl;
+
+  List<String> affiliationGroups = <String>[];
 
   @override
   Map<String, dynamic> toJson() => {
@@ -16,6 +18,7 @@ class Me implements Person {
         'name': name,
         'mail': mail,
         'icon_url': iconUrl,
+        'affiliation_groups': affiliationGroups,
       };
 
   @override
@@ -31,9 +34,11 @@ class Me implements Person {
     @required this.iconUrl,
   });
 
-  Me.fromJson(this.id,Map<String,dynamic> value){
+  Me.fromJson(Map<String, dynamic> value) {
+    this.id = value['id'];
     this.name = value['name'];
     this.mail = value['mail'];
-    this.iconUrl = value['iconUrl'];
+    this.iconUrl = value['icon_url'];
+    this.affiliationGroups = value['affiliation_group'];
   }
 }
