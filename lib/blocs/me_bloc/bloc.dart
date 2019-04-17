@@ -45,7 +45,6 @@ class MeBloc implements Bloc {
     final usersRef =
         FirebaseDatabase.instance.reference().child('users').child(_me.id);
     usersRef.update(_me.toJson());
-
   }
 
   void _doSignOut() {
