@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:meta/meta.dart';
-import 'package:pokeep/models/account/me.dart';
 import 'package:pokeep/models/account/member.dart';
 import 'package:pokeep/models/account/user.dart';
 

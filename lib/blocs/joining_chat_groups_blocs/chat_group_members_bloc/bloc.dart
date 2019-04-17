@@ -4,7 +4,7 @@ import 'package:pokeep/models/account/member.dart';
 import 'package:pokeep/models/account/user.dart';
 import 'package:rxdart/rxdart.dart';
 
-class ChatGroupUsersBloc extends Bloc {
+class ChatGroupMembersBloc extends Bloc {
   ChatGroupMembersRepository _repository;
   final String groupKey;
   List<Member> _members;
@@ -23,7 +23,7 @@ class ChatGroupUsersBloc extends Bloc {
 
   Stream<Member> get leave => _leaveController.stream;
 
-  ChatGroupUsersBloc(this.groupKey) {
+  ChatGroupMembersBloc(this.groupKey) {
     _repository = ChatGroupMembersRepository(
       groupKey: groupKey,
       onMemberJoined: (Member member) {

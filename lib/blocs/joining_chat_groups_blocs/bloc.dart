@@ -14,8 +14,8 @@ class ChatGroupsBloc extends Bloc {
 
   Stream<List<ChatGroup>> get getChatGroups => _chatGroupsController.stream;
 
-  BehaviorSubject<ChatGroup> _addGroupController = BehaviorSubject<ChatGroup>();
-  BehaviorSubject<ChatGroup> _deleteGroupController =
+  BehaviorSubject<ChatGroup> _joinGroupController = BehaviorSubject<ChatGroup>();
+  BehaviorSubject<ChatGroup> _leftGroupController =
       BehaviorSubject<ChatGroup>();
 
   ChatGroupsBloc() {
@@ -29,10 +29,10 @@ class ChatGroupsBloc extends Bloc {
         _setGroups.add(_chatGroups);
       },
     );
-    _addGroupController.stream.listen((ChatGroup chatGroup) {
+    _joinGroupController.stream.listen((ChatGroup chatGroup) {
       _repository.addGroup(chatGroup);
     });
-    _deleteGroupController.stream.listen((ChatGroup chatGroup) {
+    _leftGroupController.stream.listen((ChatGroup chatGroup) {
       _repository.deleteGroup(chatGroup);
     });
   }
@@ -40,7 +40,7 @@ class ChatGroupsBloc extends Bloc {
   @override
   void dispose() async {
     await _chatGroupsController.close();
-    await _addGroupController.close();
-    await _deleteGroupController.close();
+    await _joinGroupController.close();
+    await _leftGroupController.close();
   }
 }
