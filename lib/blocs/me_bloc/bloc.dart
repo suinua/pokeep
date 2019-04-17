@@ -1,10 +1,12 @@
 import 'package:bloc_provider/bloc_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:pokeep/blocs/me_bloc/repository.dart';
 import 'package:pokeep/models/account/me.dart';
 import 'package:rxdart/rxdart.dart';
 
 class MeBloc implements Bloc {
+  MeRepository _repository;
   Me _me;
 
   BehaviorSubject<Me> _meController = BehaviorSubject<Me>();
@@ -25,7 +27,8 @@ class MeBloc implements Bloc {
 
   void _doSignIn() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
 
     final AuthCredential credential = GoogleAuthProvider.getCredential(
       accessToken: googleAuth.accessToken,
@@ -34,12 +37,17 @@ class MeBloc implements Bloc {
 
     final FirebaseUser user = await _auth.signInWithCredential(credential);
     _me = Me(
-      id: user.uid,
-      name: user.displayName,
-      mail: user.email,
-      iconUrl: user.photoUrl
-    );
+        id: user.uid,
+        name: user.displayName,
+        mail: user.email,
+        iconUrl: user.photoUrl);
     _setValue.add(_me);
+
+    MeRepository.signIn(_me);
+    _repository = MeRepository(_me.id, onUpdateAffiliationGroups: (List<String> groups){
+      _me.affiliationGroups = groups;
+      _setValue.add(_me);
+    });
   }
 
   void _doSignOut() {
