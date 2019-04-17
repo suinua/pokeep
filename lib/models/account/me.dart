@@ -1,5 +1,4 @@
 import 'package:meta/meta.dart';
-import 'package:pokeep/blocs/joining_chat_groups_blocs/bloc.dart';
 import 'package:pokeep/models/account/person.dart';
 
 class Me implements Person {

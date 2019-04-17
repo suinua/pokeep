@@ -3,7 +3,7 @@ abstract class Person {
   String name;
   String iconUrl;
 
-  Map<String, dynamic> toJson() {}
+  Map<String, dynamic> toJson() => {};
 
   @override
   bool operator ==(o) => o is Person && o.id == this.id;

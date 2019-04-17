@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pokeep/blocs/me_bloc/bloc.dart';
-import 'package:pokeep/blocs/me_bloc/provider.dart';
 import 'package:pokeep/blocs/my_items_bloc/bloc.dart';
 import 'package:pokeep/blocs/my_items_bloc/provider.dart';
 import 'package:pokeep/models/chat/chat_group.dart';
