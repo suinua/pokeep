@@ -10,10 +10,12 @@ class User implements Person {
   String iconUrl;
 
   @override
-  Map<String, dynamic> toJson() {
-    // TODO: implement toJson
-    return null;
-  }
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'mail': mail,
+        'icon_url': iconUrl,
+      };
 
   @override
   bool operator ==(o) => o is User && o.id == this.id;
