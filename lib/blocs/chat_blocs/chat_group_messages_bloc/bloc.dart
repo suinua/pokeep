@@ -41,6 +41,7 @@ class ChatGroupMessagesBloc extends Bloc {
 
   @override
   void dispose() async {
+    _repository.dispose();
     await _messagesController.close();
     await _addMessageController.close();
     await _deleteMessageController.close();
