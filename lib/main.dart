@@ -7,12 +7,16 @@ import 'package:pokeep/view/pages/sign_in/main.dart';
 
 import 'package:pokeep/models/account/me.dart';
 
+import 'blocs/joining_chat_groups_blocs/bloc.dart';
 import 'blocs/joining_chat_groups_blocs/chat_group_bloc/bloc.dart';
 import 'blocs/joining_chat_groups_blocs/chat_group_bloc/provider.dart';
+import 'blocs/my_items_bloc/bloc.dart';
+import 'blocs/my_items_bloc/provider.dart';
 
 void main() => runApp(BlocProviderTree(
       blocProviders: [
         MeBlocProvider(value: MeBloc()),
+        MyItemsBlocProvider(value: MyItemsBloc()),
         //chat group
         ChatGroupBlocProvider(value: ChatGroupBloc()),
       ],
@@ -23,6 +27,11 @@ class Pokeep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MeBloc meBloc = MeBlocProvider.of(context);
+    final MyItemsBloc myItemsBloc = MyItemsBlocProvider.of(context);
+
+    meBloc.me.listen((me){
+      myItemsBloc.joiningChatGroupsBloc = JoiningChatGroupsBloc(me.id);
+    });
 
     return MaterialApp(
       home: StreamBuilder<Me>(

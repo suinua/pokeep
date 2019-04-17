@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:pokeep/blocs/joining_chat_groups_blocs/bloc.dart';
-import 'package:pokeep/blocs/joining_chat_groups_blocs/provider.dart';
+import 'package:pokeep/blocs/me_bloc/bloc.dart';
+import 'package:pokeep/blocs/me_bloc/provider.dart';
+import 'package:pokeep/blocs/my_items_bloc/bloc.dart';
+import 'package:pokeep/blocs/my_items_bloc/provider.dart';
 import 'package:pokeep/models/chat/chat_group.dart';
 import 'package:pokeep/view/pages/chat_room/chat_group_widget.dart';
 
 class ChatRoomPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final ChatGroupsBloc chatGroupsBloc = ChatGroupsBlocProvider.of(context);
+    final MyItemsBloc myItemsBloc = MyItemsBlocProvider.of(context);
+
     return StreamBuilder<List<ChatGroup>>(
-        stream: chatGroupsBloc.getChatGroups,
+        stream: myItemsBloc.joiningChatGroupsBloc.getGroups,
         builder: (context, snapshot) {
           if (!snapshot.hasData) return Container();
           final List<ChatGroup> chatGroups = snapshot.data;
