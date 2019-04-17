@@ -1,11 +1,11 @@
 import 'package:bloc_provider/bloc_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
-import 'package:pokeep/blocs/chat_blocs/chat_groups_bloc/bloc.dart';
+import 'package:pokeep/blocs/joining_chat_groups_blocs/chat_group_bloc/bloc.dart';
 
-class ChatGroupsBlocProvider extends BlocProvider<ChatGroupsBloc> {
-  ChatGroupsBlocProvider({
-    @required ChatGroupsBloc value,
+class ChatGroupBlocProvider extends BlocProvider<ChatGroupBloc> {
+  ChatGroupBlocProvider({
+    @required ChatGroupBloc value,
   }) : super(
     creator: (context, _bag) {
       assert(context != null);
@@ -13,7 +13,7 @@ class ChatGroupsBlocProvider extends BlocProvider<ChatGroupsBloc> {
     },
   );
 
-  ChatGroupsBlocProvider.fromBlocContext({
+  ChatGroupBlocProvider.fromBlocContext({
     @required BuildContext context,
     @required Widget child,
   }) : super.fromBlocContext(
@@ -21,5 +21,5 @@ class ChatGroupsBlocProvider extends BlocProvider<ChatGroupsBloc> {
     context: context,
   );
 
-  static ChatGroupsBloc of(BuildContext context) => BlocProvider.of(context);
+  static ChatGroupBloc of(BuildContext context) => BlocProvider.of(context);
 }

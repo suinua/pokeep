@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokeep/blocs/chat_blocs/chat_groups_bloc/bloc.dart';
-import 'package:pokeep/blocs/chat_blocs/chat_groups_bloc/provider.dart';
+import 'package:pokeep/blocs/joining_chat_groups_blocs/bloc.dart';
+import 'package:pokeep/blocs/joining_chat_groups_blocs/provider.dart';
 import 'package:pokeep/models/chat/chat_group.dart';
 import 'package:pokeep/view/pages/chat_room/chat_group_widget.dart';
 

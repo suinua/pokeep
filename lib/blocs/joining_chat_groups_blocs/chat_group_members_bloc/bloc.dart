@@ -1,5 +1,5 @@
 import 'package:bloc_provider/bloc_provider.dart';
-import 'package:pokeep/blocs/chat_blocs/chat_group_members_bloc/repository.dart';
+import 'package:pokeep/blocs/joining_chat_groups_blocs/chat_group_members_bloc/repository.dart';
 import 'package:pokeep/models/account/member.dart';
 import 'package:pokeep/models/account/user.dart';
 import 'package:rxdart/rxdart.dart';

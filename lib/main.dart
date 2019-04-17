@@ -7,10 +7,10 @@ import 'package:pokeep/view/pages/sign_in/main.dart';
 
 import 'package:pokeep/models/account/me.dart';
 
-import 'blocs/chat_blocs/chat_group_bloc/bloc.dart';
-import 'blocs/chat_blocs/chat_group_bloc/provider.dart';
-import 'blocs/chat_blocs/chat_groups_bloc/bloc.dart';
-import 'blocs/chat_blocs/chat_groups_bloc/provider.dart';
+import 'blocs/joining_chat_groups_blocs/chat_group_bloc/bloc.dart';
+import 'blocs/joining_chat_groups_blocs/chat_group_bloc/provider.dart';
+import 'package:pokeep/blocs/joining_chat_groups_blocs/bloc.dart';
+import 'package:pokeep/blocs/joining_chat_groups_blocs/provider.dart';
 
 void main() => runApp(BlocProviderTree(
       blocProviders: [
