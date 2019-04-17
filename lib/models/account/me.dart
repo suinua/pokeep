@@ -1,4 +1,5 @@
 import 'package:meta/meta.dart';
+import 'package:pokeep/blocs/joining_chat_groups_blocs/bloc.dart';
 import 'package:pokeep/models/account/person.dart';
 
 class Me implements Person {
@@ -10,15 +11,12 @@ class Me implements Person {
   @override
   String iconUrl;
 
-  List<String> joiningGroups = <String>[];
-
   @override
   Map<String, dynamic> toJson() => {
         'id': id,
         'name': name,
         'mail': mail,
         'icon_url': iconUrl,
-        'joining_groups': joiningGroups,
       };
 
   @override
@@ -39,6 +37,5 @@ class Me implements Person {
     this.name = value['name'];
     this.mail = value['mail'];
     this.iconUrl = value['icon_url'];
-    this.joiningGroups = value['joining_groups'];
   }
 }
