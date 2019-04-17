@@ -11,6 +11,7 @@ class JoiningChatGroupsBloc extends Bloc {
       BehaviorSubject<List<ChatGroup>>();
 
   Sink<List<ChatGroup>> get _setGroups => _groupsController.sink;
+  Stream<List<ChatGroup>> get getGroups => _groupsController.stream;
 
   BehaviorSubject<String> _joinGroupController = BehaviorSubject<String>();
 
