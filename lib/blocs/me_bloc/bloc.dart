@@ -1,12 +1,11 @@
 import 'package:bloc_provider/bloc_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:pokeep/blocs/me_bloc/repository.dart';
 import 'package:pokeep/models/account/me.dart';
 import 'package:rxdart/rxdart.dart';
 
 class MeBloc implements Bloc {
-  MeRepository _repository;
   Me _me;
 
   BehaviorSubject<Me> _meController = BehaviorSubject<Me>();
@@ -43,11 +42,10 @@ class MeBloc implements Bloc {
         iconUrl: user.photoUrl);
     _setValue.add(_me);
 
-    MeRepository.signIn(_me);
-    _repository = MeRepository(_me.id, onUpdateJoiningGroups: (List<String> groups){
-      _me.joiningGroups = groups;
-      _setValue.add(_me);
-    });
+    final usersRef =
+        FirebaseDatabase.instance.reference().child('users').child(_me.id);
+    usersRef.update(_me.toJson());
+
   }
 
   void _doSignOut() {
