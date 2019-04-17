@@ -12,7 +12,7 @@ class ChatGroupBloc extends Bloc {
 
   Sink<ChatGroup> get _setGroup => _chatGroupController.sink;
 
-  Stream<ChatGroup> get chatGroup => _chatGroupController.stream;
+  Stream<ChatGroup> get getChatGroup => _chatGroupController.stream;
 
   BehaviorSubject<ChatGroup> _replaceGroupController =
       BehaviorSubject<ChatGroup>();
