@@ -44,8 +44,8 @@ class MeBloc implements Bloc {
     _setValue.add(_me);
 
     MeRepository.signIn(_me);
-    _repository = MeRepository(_me.id, onUpdateAffiliationGroups: (List<String> groups){
-      _me.affiliationGroups = groups;
+    _repository = MeRepository(_me.id, onUpdateJoiningGroups: (List<String> groups){
+      _me.joiningGroups = groups;
       _setValue.add(_me);
     });
   }

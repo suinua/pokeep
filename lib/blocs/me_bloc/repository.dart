@@ -2,13 +2,13 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:meta/meta.dart';
 import 'package:pokeep/models/account/me.dart';
 
-typedef OnUpdateAffiliationGroups(List<String> groupKeys);
+typedef OnUpdateJoiningGroups(List<String> groupKeys);
 
 class MeRepository {
-  DatabaseReference _affiliationGroupsRef;
+  DatabaseReference _joiningGroupsRef;
   String id;
 
-  final OnUpdateAffiliationGroups onUpdateAffiliationGroups;
+  final OnUpdateJoiningGroups onUpdateJoiningGroups;
 
   static void signIn(Me me) {
     final usersRef =
@@ -16,15 +16,15 @@ class MeRepository {
     usersRef.set(me.toJson());
   }
 
-  MeRepository(this.id, {@required this.onUpdateAffiliationGroups}) {
-    _affiliationGroupsRef = FirebaseDatabase.instance
+  MeRepository(this.id, {@required this.onUpdateJoiningGroups}) {
+    _joiningGroupsRef = FirebaseDatabase.instance
         .reference()
         .child('users')
         .child(id)
-        .child('affiliation_groups');
+        .child('joining_groups');
 
-    _affiliationGroupsRef.onValue.listen((event) {
-      this.onUpdateAffiliationGroups(event.snapshot.value);
+    _joiningGroupsRef.onValue.listen((event) {
+      this.onUpdateJoiningGroups(event.snapshot.value);
     });
   }
 }

@@ -10,7 +10,7 @@ class Me implements Person {
   @override
   String iconUrl;
 
-  List<String> affiliationGroups = <String>[];
+  List<String> joiningGroups = <String>[];
 
   @override
   Map<String, dynamic> toJson() => {
@@ -18,7 +18,7 @@ class Me implements Person {
         'name': name,
         'mail': mail,
         'icon_url': iconUrl,
-        'affiliation_groups': affiliationGroups,
+        'joining_groups': joiningGroups,
       };
 
   @override
@@ -39,6 +39,6 @@ class Me implements Person {
     this.name = value['name'];
     this.mail = value['mail'];
     this.iconUrl = value['icon_url'];
-    this.affiliationGroups = value['affiliation_group'];
+    this.joiningGroups = value['joining_groups'];
   }
 }
