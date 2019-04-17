@@ -3,44 +3,49 @@ import 'package:pokeep/blocs/joining_chat_groups_blocs/repository.dart';
 import 'package:pokeep/models/chat/chat_group.dart';
 import 'package:rxdart/rxdart.dart';
 
-class ChatGroupsBloc extends Bloc {
-  ChatGroupsRepository _repository;
-  List<ChatGroup> _chatGroups = <ChatGroup>[];
+class JoiningChatGroupsBloc extends Bloc {
+  JoiningChatGroupsRepository _repository;
+  List<ChatGroup> _joiningGroups = <ChatGroup>[];
 
-  BehaviorSubject<List<ChatGroup>> _chatGroupsController =
+  BehaviorSubject<List<ChatGroup>> _groupsController =
       BehaviorSubject<List<ChatGroup>>();
 
-  Sink<List<ChatGroup>> get _setGroups => _chatGroupsController.sink;
+  Sink<List<ChatGroup>> get _setGroups => _groupsController.sink;
 
-  Stream<List<ChatGroup>> get getChatGroups => _chatGroupsController.stream;
+  BehaviorSubject<String> _joinGroupController = BehaviorSubject<String>();
 
-  BehaviorSubject<ChatGroup> _joinGroupController = BehaviorSubject<ChatGroup>();
-  BehaviorSubject<ChatGroup> _leftGroupController =
-      BehaviorSubject<ChatGroup>();
+  Sink<String> get join => _joinGroupController.sink;
 
-  ChatGroupsBloc() {
-    _repository = ChatGroupsRepository(
-      onChatGroupAdded: (ChatGroup chatGroup) {
-        _chatGroups.add(chatGroup);
-        _setGroups.add(_chatGroups);
+  BehaviorSubject<String> _leaveGroupController = BehaviorSubject<String>();
+
+  Sink<String> get lave => _leaveGroupController.sink;
+
+  JoiningChatGroupsBloc(String userId) {
+    _joinGroupController.stream.listen((String chatGroupKey) {
+      _repository.join(chatGroupKey);
+    });
+
+    _leaveGroupController.stream.listen((String chatGroupKey) {
+      _repository.left(chatGroupKey);
+    });
+
+    _repository = JoiningChatGroupsRepository(
+      userId,
+      onJoinChatGroup: (ChatGroup chatGroups) {
+        _joiningGroups.add(chatGroups);
+        _setGroups.add(_joiningGroups);
       },
-      onChatGroupDeleted: (ChatGroup chatGroup) {
-        _chatGroups.add(chatGroup);
-        _setGroups.add(_chatGroups);
+      onLeftChatGroup: (ChatGroup chatGroups) {
+        _joiningGroups.remove(chatGroups);
+        _setGroups.add(_joiningGroups);
       },
     );
-    _joinGroupController.stream.listen((ChatGroup chatGroup) {
-      _repository.addGroup(chatGroup);
-    });
-    _leftGroupController.stream.listen((ChatGroup chatGroup) {
-      _repository.deleteGroup(chatGroup);
-    });
   }
 
   @override
   void dispose() async {
-    await _chatGroupsController.close();
+    await _groupsController.close();
     await _joinGroupController.close();
-    await _leftGroupController.close();
+    await _leaveGroupController.close();
   }
 }
