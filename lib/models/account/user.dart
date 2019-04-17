@@ -32,7 +32,8 @@ class User implements Person {
     @required this.iconUrl,
   });
 
-  User.fromJson(this.id,Map<String,dynamic> value){
+  User.fromJson(Map<String,dynamic> value){
+    this.id = value['id'];
     this.name = value['name'];
     this.mail = value['mail'];
     this.iconUrl = value['iconUrl'];
