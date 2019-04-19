@@ -17,7 +17,7 @@ class ChatGroupBloc extends Bloc {
   BehaviorSubject<ChatGroup> _replaceGroupController =
       BehaviorSubject<ChatGroup>();
 
-  Stream<ChatGroup> get replace => _replaceGroupController.stream;
+  Sink<ChatGroup> get replace => _replaceGroupController.sink;
 
   BehaviorSubject<String> _updateNameController = BehaviorSubject<String>();
 
