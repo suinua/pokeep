@@ -1,16 +1,16 @@
 import 'package:meta/meta.dart';
-import 'package:pokeep/models/account/person.dart';
+import 'package:pokeep/models/account/user.dart';
 
 class Message {
   String key;
   String _text;
-  Person _owner;
+  User _owner;
   DateTime _sendDate;
   String _image;
 
   String get text => _text;
 
-  Person get owner => _owner;
+  User get owner => _owner;
 
   DateTime get sendDate => _sendDate;
 
@@ -20,7 +20,7 @@ class Message {
 
   Message(
     String text, {
-    @required Person owner,
+    @required User owner,
     @required DateTime sendDate,
   })  : _owner = owner,
         _sendDate = sendDate,
@@ -28,7 +28,7 @@ class Message {
 
   Message.withImage(
     String text, {
-    @required Person owner,
+    @required User owner,
     @required DateTime sendDate,
     @required String image,
   })  : _text = text,
@@ -37,13 +37,15 @@ class Message {
         _image = image;
 
   Message.fromJson(this.key, Map<String, dynamic> value) {
-    _owner = value['owner'];
-    _sendDate = value['send_date'];
+    _text = value['text'];
+    _owner = User.fromJson(value['owner']);
+    _sendDate = DateTime.now(); //value['send_date'];
     _image = value['image'];
   }
 
   Map<String, dynamic> toJson() => {
-        'owner': _owner,
+        'texr': _text,
+        'owner': _owner.toJson(),
         'send_date': _sendDate,
         'image': _image,
       };
