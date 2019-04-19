@@ -7,14 +7,10 @@ import 'package:pokeep/view/pages/sign_in/main.dart';
 
 import 'blocs/joining_chat_groups_blocs/chat_group_bloc/bloc.dart';
 import 'blocs/joining_chat_groups_blocs/chat_group_bloc/provider.dart';
-import 'blocs/my_items_bloc/bloc.dart';
-import 'blocs/my_items_bloc/provider.dart';
 
 void main() => runApp(BlocProviderTree(
       blocProviders: [
         MeBlocProvider(value: MeBloc()),
-        MyItemsBlocProvider(value: MyItemsBloc()),
-        //chat group
         ChatGroupBlocProvider(value: ChatGroupBloc()),
       ],
       child: Pokeep(),
