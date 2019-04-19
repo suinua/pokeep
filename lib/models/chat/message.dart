@@ -3,9 +3,12 @@ import 'package:pokeep/models/account/person.dart';
 
 class Message {
   String key;
+  String _text;
   Person _owner;
   DateTime _sendDate;
   String _image;
+
+  String get text => _text;
 
   Person get owner => _owner;
 
@@ -15,23 +18,21 @@ class Message {
 
   bool hasImage() => _image != null;
 
-  Message({
-    @required
-    Person owner,
-    @required
-    DateTime sendDate,
+  Message(
+    String text, {
+    @required Person owner,
+    @required DateTime sendDate,
   })  : _owner = owner,
         _sendDate = sendDate,
         _image = null;
 
-  Message.withImage({
-    @required
-    Person owner,
-    @required
-    DateTime sendDate,
-    @required
-    String image,
-  })  : _owner = owner,
+  Message.withImage(
+    String text, {
+    @required Person owner,
+    @required DateTime sendDate,
+    @required String image,
+  })  : _text = text,
+        _owner = owner,
         _sendDate = sendDate,
         _image = image;
 
