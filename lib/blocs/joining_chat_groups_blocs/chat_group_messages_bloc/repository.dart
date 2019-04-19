@@ -46,11 +46,11 @@ class ChatGroupMessagesRepository {
   }
 
   void addMessage(Message message) {
-    _messagesRef.child(message.key).remove();
+    _messagesRef.push().set(message.toJson());
   }
 
   void deleteMessage(Message message) {
-    _messagesRef.push().set(message.toJson());
+    _messagesRef.child(message.key).remove();
   }
 
   void dispose(){
