@@ -11,6 +11,48 @@ class MessageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //TODO : Widgetの作成
-    return Text(message.text);
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            CircleAvatar(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(60.0),
+                child: Image.network(message.owner.iconUrl),
+              ),
+            ),
+            Text(
+              message.owner.name,
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Opacity(
+              opacity: 0.0,
+              child: CircleAvatar(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(60.0),
+                  child: Image.network(message.owner.iconUrl),
+                ),
+              ),
+            ),
+            Flexible(
+              child: Text(
+                message.text,
+                maxLines: 100,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
+        Divider(),
+      ],
+    );
   }
 }
