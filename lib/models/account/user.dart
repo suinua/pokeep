@@ -36,6 +36,6 @@ class User implements Person {
     this.id = value['id'];
     this.name = value['name'];
     this.mail = value['mail'];
-    this.iconUrl = value['iconUrl'];
+    this.iconUrl = value['icon_url'];
   }
 }
