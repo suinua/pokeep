@@ -22,7 +22,8 @@ class Message {
     String text, {
     @required User owner,
     @required DateTime sendDate,
-  })  : _owner = owner,
+  })  : _text = text,
+        _owner = owner,
         _sendDate = sendDate,
         _image = null;
 
@@ -38,15 +39,15 @@ class Message {
 
   Message.fromJson(this.key, Map<String, dynamic> value) {
     _text = value['text'];
-    _owner = User.fromJson(value['owner']);
-    _sendDate = DateTime.now(); //value['send_date'];
+    _owner = User.fromJson(Map<String, dynamic>.from(value['owner']));
+    _sendDate = DateTime.parse(value['send_date']);
     _image = value['image'];
   }
 
   Map<String, dynamic> toJson() => {
-        'texr': _text,
+        'text': _text,
         'owner': _owner.toJson(),
-        'send_date': _sendDate,
+        'send_date': _sendDate.toString(),
         'image': _image,
       };
 }
