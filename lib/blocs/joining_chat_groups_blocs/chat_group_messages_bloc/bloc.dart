@@ -6,7 +6,7 @@ import 'package:rxdart/rxdart.dart';
 class ChatGroupMessagesBloc extends Bloc {
   ChatGroupMessagesRepository _repository;
   final String groupKey;
-  List<Message> _messages;
+  List<Message> _messages = <Message>[];
 
   BehaviorSubject<List<Message>> _messagesController =
       BehaviorSubject<List<Message>>();
