@@ -13,7 +13,7 @@ class MeRepository {
     assert(id != null);
     assert(onRenamed != null);
 
-    _nameRef = FirebaseDatabase.instance.reference().child('users').child(id);
+    _nameRef = FirebaseDatabase.instance.reference().child('users').child(id).child('name');
     _nameRef.onValue.listen((event){
       onRenamed(event.snapshot.value);
     });
