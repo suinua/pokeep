@@ -5,8 +5,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pokeep/models/account/me.dart';
 import 'package:rxdart/rxdart.dart';
 
+import 'me_repository.dart';
+
 class MeBloc implements Bloc {
   Me _me;
+  MeRepository _repository;
 
   BehaviorSubject<Me> _meController = BehaviorSubject<Me>();
 
@@ -16,10 +19,13 @@ class MeBloc implements Bloc {
 
   BehaviorSubject<Null> _signInController = BehaviorSubject<Null>();
   BehaviorSubject<Null> _signOutController = BehaviorSubject<Null>();
+  BehaviorSubject<String> _renameController = BehaviorSubject<String>();
 
   Sink<Null> get signIn => _signInController.sink;
 
   Sink<Null> get signOut => _signOutController.sink;
+
+  Sink<String> get rename => _renameController.sink;
 
   GoogleSignIn _googleSignIn;
   FirebaseAuth _auth;
@@ -35,16 +41,27 @@ class MeBloc implements Bloc {
     );
 
     final FirebaseUser user = await _auth.signInWithCredential(credential);
-    _me = Me(
-        id: user.uid,
-        name: user.displayName,
-        mail: user.email,
-        iconUrl: user.photoUrl);
-    _setValue.add(_me);
 
-    final usersRef =
-        FirebaseDatabase.instance.reference().child('users').child(_me.id);
-    usersRef.update(_me.toJson());
+    final DatabaseReference meRef =
+        FirebaseDatabase.instance.reference().child('users').child(user.uid);
+
+    final _meDateOnFirebase = await meRef.once();
+
+    if (_meDateOnFirebase == null) {
+      _me = Me(
+          id: user.uid,
+          name: user.displayName,
+          mail: user.email,
+          iconUrl: user.photoUrl);
+      meRef.update(_me.toJson());
+    } else {
+      _me = Me.fromJson(Map<String, dynamic>.from(_meDateOnFirebase.value));
+    }
+
+    _repository = MeRepository(_me.id, onRenamed: (String name) {
+      _me.name = name;
+    });
+    _setValue.add(_me);
   }
 
   void _doSignOut() {
@@ -58,6 +75,10 @@ class MeBloc implements Bloc {
 
     _signInController.stream.listen((_) => _doSignIn());
     _signOutController.stream.listen((_) => _doSignOut());
+    _renameController.stream.listen((String name){
+      assert(_me != null);
+      _repository.rename(name);
+    });
   }
 
   @override
@@ -65,5 +86,6 @@ class MeBloc implements Bloc {
     await _meController.close();
     await _signInController.close();
     await _signOutController.close();
+    await _renameController.close();
   }
 }
