@@ -5,6 +5,7 @@ import 'package:pokeep/blocs/me_bloc/provider.dart';
 import 'package:pokeep/models/account/me.dart';
 import 'package:pokeep/view/pages/chat_groups/main.dart';
 import 'package:pokeep/view/pages/home/main.dart';
+import 'package:pokeep/view/pages/me_setting/main.dart';
 
 class _Pages {
   final String value;
@@ -65,7 +66,14 @@ class _InitialPageState extends State<InitialPage> {
                   padding: const EdgeInsets.all(3.0),
                   child: GestureDetector(
                     onTap: () {
-                      //TODO : アカウント設定画面に移行
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) {
+                            return MeSettingPage();
+                          },
+                        ),
+                      );
                     },
                     child: Container(
                       child: ClipRRect(
